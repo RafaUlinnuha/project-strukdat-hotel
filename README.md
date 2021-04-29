@@ -1,9 +1,9 @@
-# JUDUL_PROYEK
+# Sistem Reservasi Hotel
 
 Anggota Kelompok:
-* NAMA (NPM)
-* NAMA (NPM)
-* NAMA (NPM)
+* Rafa Azka Ulinnuha (140810200033)
+* Amalia Nur Fitri (140810200045)
+* Kharisma Fitri Nurunnnisa Siahaan (140810200047)
 ---
 ## Latar Belakang
 
