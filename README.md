@@ -33,6 +33,7 @@ Program ini dibuat untuk melakukan reservasi kamar Hotel Del Luna dimana terdapa
 ## Gambar Rancangan Antar Muka
 
 * Gambar Menu Awal
+
   ![](img/menu.png)
 
 * Gambar Menu Pegawai
