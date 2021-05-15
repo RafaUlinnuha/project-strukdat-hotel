@@ -1,6 +1,5 @@
-//header menu
-
 #include <iostream>
+#include "pesanKamar.hpp"
 
 void menuPengunjung(){
     system("cls");
@@ -34,7 +33,7 @@ void menuPengunjung(){
             }
             break;
         case 2:
-            //pesan kamar
+            pesanKamar();
             break;
         default:
             std::cout << "Masukkan Anda Salah!!\n";
