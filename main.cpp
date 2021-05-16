@@ -1,6 +1,7 @@
 #include <iostream>
 #include "kamarA.hpp"
 #include "pesanKamar.hpp"
+#include "kamarB.hpp"
 
 void menuPengunjung(){
     system("cls");
@@ -22,11 +23,11 @@ void menuPengunjung(){
             std::cout << "Fasilitas\t\t: Max. 2 orang, Wifi, SPA, Kolam\n";
             std::cout << "\t\t\t  Renang, Sarapan, AC\n";
             std::cout << "Harga/malam\t\t: Rp. 400.000,00\n";
-            std::cout << "Jumlah kamar tersedia\t: "; countKamar();
+            std::cout << "Jumlah kamar tersedia\t: "; countKamarA();
             std::cout << "\n\n2. Kamar B\n";
             std::cout << "Fasilitas\t\t: Max. 4 orang, Wifi, AC\n";
             std::cout << "Harga/malam\t\t: Rp. 400.000,00\n";
-            std::cout << "Jumlah kamar tersedia\t: ";
+            std::cout << "Jumlah kamar tersedia\t: "; countKamarB();
             std::cout << "\n\nBack to menu (Y/N)? ";
             std::cin >> pilih;
             if (pilih == 'Y' || pilih == 'y'){
@@ -47,7 +48,7 @@ void menuPengunjung(){
 
 void update(){
     system("cls");
-    int pilih, val;
+    int pilih;
     std::cout << "\tUPDATE\n";
     std::cout << "1. Kamar A\n";
     std::cout << "2. Kamar B\n";
@@ -56,14 +57,7 @@ void update(){
 
     switch(pilih){
         case 1:
-            std::cout << "\nTambah Kamar";
-            std::cout << "\nNo. Kamar\t: ";
-            std::cin >> val;
-            if (val > 0 && val < 6){
-                push(val);
-            } else {
-                std::cout << "Masukkan Anda Salah!!\n";
-            }
+            //input kamar a;
             break;
         case 2: 
             // input kamar b;
@@ -93,7 +87,7 @@ void menuPegawai(){
             update();
             break;
         case 3:
-            pesanKamar();
+            //pesan kamar
             break;
         case 4:
             //hapus pengunjung
@@ -119,12 +113,18 @@ void idPegawai(){
 
 main(){
     system("cls");
-    Stack S;
-    createStack(S);
-    push(1);
-    push(2);
-    push(3);
-    push(4);
+    KamarA A;
+    KamarB B;
+    createKamarA(A);
+    int noA[5] = {1,2,3,4,5};
+    for(int i=0; i<5; i++){
+        push(noA[i]);
+    }
+    createKamarB(B);
+    int noB[7] = {6,7,8,9,10,11,12};
+    for(int i=0; i<7; i++){
+        pushB(noB[i]);
+    }
     int homePilih;
     std::cout << "\tHOTEL DEL LUNA\n";
     std::cout << "\n";
@@ -133,7 +133,7 @@ main(){
     std::cout << "Masuk Sebagai\n"
                  "1. Pengunjung\n"
                  "2. Pegawai\n";
-    std::cout << "Masukkan pilihan (1/2)\t: ";
+    std::cout << "Masukkan pilihan (1/2) : ";
     std::cin >> homePilih;
     switch(homePilih){
         case 1:

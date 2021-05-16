@@ -1,24 +1,24 @@
 const int max = 5;
 
-struct Stack{
+struct KamarA{
     int member[max];
     int TOP;
 };
-Stack S;
+KamarA A;
 
-void createStack(Stack &S){
-    S.TOP = -1;
+void createKamarA(KamarA &A){
+    A.TOP = -1;
 }
 
-void countKamar(){
-    std::cout << S.TOP + 1 << "\n";
+void countKamarA(){
+    std::cout << A.TOP + 1 << "\n";
 }
 
 void push(int val){
-    if(S.TOP == max-1){
+    if(A.TOP == max-1){
         std::cout << "Kamar sudah penuh";
     } else {
-        S.TOP++;
-        S.member[S.TOP] = val;
+        A.TOP++;
+        A.member[A.TOP] = val;
     }
 }
