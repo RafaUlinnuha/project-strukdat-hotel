@@ -1,6 +1,3 @@
-#include <iostream>
-#include <string.h>
-
 struct Pengunjung{
     char kamar;
     std::string tanggal, nama;
@@ -36,10 +33,10 @@ void traversalPengunjung(List First){
         List pHelp = First;
         std::cout << "\t\tSelamat, pesanan berhasil dibuat!\n";
         std::cout << "---------------------------------------------------------------------\n";
-        std::cout << pHelp->nama << "\n";
-        std::cout << pHelp->kamar << "\n";
-        std::cout << pHelp->tanggal << "\n";
-        std::cout << pHelp->jumlah << "\n";
+        std::cout << "Nama\t: " << pHelp->nama << "\n";
+        std::cout << "Kamar\t: " << pHelp->kamar << "\n";
+        std::cout << "Tanggal\t: " <<pHelp->tanggal << "\n";
+        std::cout << "Jumlah\t: " << pHelp->jumlah << "\n";
         }
     } 
 
