@@ -1,24 +1,33 @@
 const int maxB = 7;
 
 struct KamarB{
-    int memberB[maxB];
-    int TOPB;
+    int member[maxB];
+    int TOP;
 };
 KamarB B;
 
 void createKamarB(KamarB &B){
-    B.TOPB = -1;
+    B.TOP = -1;
 }
 
 void countKamarB(){
-    std::cout << B.TOPB + 1<< "\n";
+    std::cout << B.TOP + 1<< "\n";
 }
 
 void pushB(int val){
-    if(B.TOPB == maxB-1){
+    if(B.TOP == maxB-1){
         std::cout << "Kamar sudah penuh";
     } else {
-        B.TOPB++;
-        B.memberB[B.TOPB] = val;
+        B.TOP++;
+        B.member[B.TOP] = val;
     }
+}
+
+int noKamarB(){
+    return B.member[B.TOP];
+}
+
+void popB(){
+    int resultElement = noKamarB();
+    B.TOP -= 1;
 }

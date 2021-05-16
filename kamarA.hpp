@@ -22,3 +22,12 @@ void push(int val){
         A.member[A.TOP] = val;
     }
 }
+
+int noKamarA(){
+    return A.member[A.TOP];
+}
+
+void popA(){
+    int resultElement = noKamarA();
+    A.TOP -= 1;
+}
