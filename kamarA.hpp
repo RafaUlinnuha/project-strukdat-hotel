@@ -10,12 +10,8 @@ void createStack(Stack &S){
     S.TOP = -1;
 }
 
-int countKamar(Stack S){
-    if(S.TOP < 0) {
-        return 0;
-    } else {
-        return S.TOP+1;
-    }
+void countKamar(){
+    std::cout << S.TOP + 1 << "\n";
 }
 
 void push(){
@@ -27,5 +23,3 @@ void push(){
         std::cin >> S.member[S.TOP];
     }
 }
-
-

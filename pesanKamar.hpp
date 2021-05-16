@@ -37,8 +37,8 @@ void traversalPengunjung(List First){
         std::cout << "Kamar\t: " << pHelp->kamar << "\n";
         std::cout << "Tanggal\t: " <<pHelp->tanggal << "\n";
         std::cout << "Jumlah\t: " << pHelp->jumlah << "\n";
-        }
-    } 
+    }
+} 
 
 void pesanKamar(){
     system("cls");
