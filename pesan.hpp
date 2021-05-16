@@ -22,6 +22,7 @@ void createList(QueuePengunjung& Q){
 
 void createPesanan(pointer &pNew){
     pNew = new Pengunjung;
+    int pilihPesan;
     std::cout << "Nama\t\t\t: "; 
     std::cin >> pNew->nama;
     std::cout << "Kamar (A/B)\t\t: "; 
@@ -29,7 +30,30 @@ void createPesanan(pointer &pNew){
     std::cout << "Tanggal Check-in\t: "; 
     std::cin >> pNew->tanggalCI >> pNew->bulanCI >> pNew->tahunCI; 
     std::cout << "Tanggal Check-out\t: ";
-   std::cin >> pNew->tanggalCO >> pNew->bulanCO >> pNew->tahunCO; 
+    std::cin >> pNew->tanggalCO >> pNew->bulanCO >> pNew->tahunCO; 
+    if(pNew->tanggalCI,pNew->tanggalCO > 31 || pNew->tanggalCI,pNew->tanggalCO < 1 || pNew->bulanCI,pNew->bulanCO >12 ||pNew->bulanCI,pNew->bulanCO < 1 || pNew->tahunCI,pNew->tahunCO < 2021){
+        std::cout << "tanggal yang anda masukkan salah!";
+        std::cout << "pesan ulang?(Y/N) ";
+        std::cin >> pilihPesan;
+        if(pilihPesan == 'y' || pilihPesan == "Y"){
+            createPesanan(pNew);
+        }
+        else{
+            exit(0);
+        }
+    }
+    if(pNew->){
+        std::cout << "tanggal yang anda masukkan salah!";
+        std::cout << "pesan ulang?(Y/N) ";
+        std::cin >> pilihPesan;
+        if(pilihPesan == 'y' || pilihPesan == "Y"){
+            createPesanan(pNew);
+        }
+        else{
+            exit(0);
+        }
+    }
+
     if(pNew->kamar == 'A' || pNew->kamar == 'a'){
         pNew->noKamar = noKamarA();
         popA();
