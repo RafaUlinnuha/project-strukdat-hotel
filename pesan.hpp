@@ -30,11 +30,11 @@ void createPesanan(pointer &pNew){
     std::cin >> pNew->tanggalCI >> pNew->bulanCI >> pNew->tahunCI; 
     std::cout << "Tanggal Check-out\t: ";
    std::cin >> pNew->tanggalCO >> pNew->bulanCO >> pNew->tahunCO; 
-    if(pNew->kamar == 'A'){
+    if(pNew->kamar == 'A' || pNew->kamar == 'a'){
         pNew->noKamar = noKamarA();
         popA();
     }
-    else if (pNew->kamar == 'B'){
+    else if (pNew->kamar == 'B' || pNew->kamar == 'b'){
         pNew->noKamar = noKamarB();
         popB();
     }

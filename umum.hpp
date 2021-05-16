@@ -204,13 +204,13 @@ void update(){
 
     switch(pilih){
         case 1:
-            std::cout << "masukkan no kamar : ";
+            std::cout << "Masukkan no kamar\t: ";
             std::cin >> noKamar;
             push(noKamar);
             backtoMenuPeg();
             break;
         case 2: 
-            std::cout << "masukkan no kamar : ";
+            std::cout << "Masukkan no kamar\t: ";
             std::cin >> noKamar;
             pushB(noKamar);
             backtoMenuPeg();
