@@ -47,7 +47,7 @@ void menuPengunjung(){
 
 void update(){
     system("cls");
-    int pilih;
+    int pilih, val;
     std::cout << "\tUPDATE\n";
     std::cout << "1. Kamar A\n";
     std::cout << "2. Kamar B\n";
@@ -56,7 +56,14 @@ void update(){
 
     switch(pilih){
         case 1:
-            push();
+            std::cout << "\nTambah Kamar";
+            std::cout << "\nNo. Kamar\t: ";
+            std::cin >> val;
+            if (val > 0 && val < 6){
+                push(val);
+            } else {
+                std::cout << "Masukkan Anda Salah!!\n";
+            }
             break;
         case 2: 
             // input kamar b;
@@ -86,7 +93,7 @@ void menuPegawai(){
             update();
             break;
         case 3:
-            //pesan kamar
+            pesanKamar();
             break;
         case 4:
             //hapus pengunjung
@@ -114,6 +121,10 @@ main(){
     system("cls");
     Stack S;
     createStack(S);
+    push(1);
+    push(2);
+    push(3);
+    push(4);
     int homePilih;
     std::cout << "\tHOTEL DEL LUNA\n";
     std::cout << "\n";
@@ -122,7 +133,7 @@ main(){
     std::cout << "Masuk Sebagai\n"
                  "1. Pengunjung\n"
                  "2. Pegawai\n";
-    std::cout << "Masukkan pilihan (1/2) : ";
+    std::cout << "Masukkan pilihan (1/2)\t: ";
     std::cin >> homePilih;
     switch(homePilih){
         case 1:
