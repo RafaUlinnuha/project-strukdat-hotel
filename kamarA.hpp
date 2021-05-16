@@ -10,11 +10,11 @@ void createStack(Stack &S){
     S.TOP = -1;
 }
 
-bool isEmpty(Stack S){
+int countKamar(Stack S){
     if(S.TOP < 0) {
-        return true;
+        return 0;
     } else {
-        return false;
+        return S.TOP+1;
     }
 }
 
@@ -26,10 +26,6 @@ void push(){
         std::cout << "No. Kamar\t: ";
         std::cin >> S.member[S.TOP];
     }
-}
-
-void countKamar(){
-    std::cout << S.TOP + 1;
 }
 
 

@@ -6,6 +6,7 @@ void menuPengunjung(){
     system("cls");
     int tamuPilih;
     char pilih;
+    Stack S;
     std::cout << "\tPENGUNJUNG\n";
     std::cout << "\n";
     std::cout << "Menu :\n"
@@ -22,7 +23,7 @@ void menuPengunjung(){
             std::cout << "Fasilitas\t\t: Max. 2 orang, Wifi, SPA, Kolam\n";
             std::cout << "\t\t\t  Renang, Sarapan, AC\n";
             std::cout << "Harga/malam\t\t: Rp. 400.000,00\n";
-            std::cout << "Jumlah kamar tersedia\t: "; countKamar();
+            std::cout << "Jumlah kamar tersedia\t: "; countKamar(S);
             std::cout << "\n\n2. Kamar B\n";
             std::cout << "Fasilitas\t\t: Max. 4 orang, Wifi, AC\n";
             std::cout << "Harga/malam\t\t: Rp. 400.000,00\n";
