@@ -154,7 +154,7 @@ void menuPegawai(){
             backtoMenuPegawai();
             break;
         case 4:
-            //hapus pengunjung
+            hapusPengunjung(Q);
             backtoMenuPegawai();
             break;
         case 5:

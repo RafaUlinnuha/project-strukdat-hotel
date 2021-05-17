@@ -102,3 +102,26 @@ void cetakListPengunjung(QueuePengunjung Q){
     }
 }
 
+void hapusPengunjung(QueuePengunjung Q) {
+    pointer delElement;
+    if(Q.head != nullptr){
+        std::cout << "Pengunjung dengan data :\n";
+        std::cout << "Nama\t:" <<Q.head->nama << "\n";
+        std::cout << "Kamar\t\t: " << Q.head->kamar << "\n";
+        std::cout << "No Kamar\t: " << Q.head->noKamar << "\n"; 
+        std::cout << "Tanggal Check-in\t: " <<Q.head->tanggalCI <<" - " << Q.head->bulanCI <<" - " << Q.head->tahunCI << "\n";
+        std::cout << "Tanggal Check-out\t: " <<Q.head->tanggalCO <<" - " << Q.head->bulanCO <<" - " << Q.head->tahunCO << "\n";
+    }
+    if(Q.head == nullptr){
+        delElement = nullptr;
+    } else if(Q.head->next == nullptr){
+        delElement = Q.head;
+        Q.head = nullptr;
+        Q.tail = nullptr;
+    } else{
+        delElement = Q.head;
+        Q.head = Q.head->next;
+        delElement->next = nullptr;
+    }
+    std::cout << "Sudah tidak ada / berhasil terhapus!\n";
+}
