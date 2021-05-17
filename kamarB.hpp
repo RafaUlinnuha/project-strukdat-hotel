@@ -15,9 +15,14 @@ int countKamarB(){
 }
 
 void pushB(int val){
-    if(B.TOP < max-1){
-        B.member[A.TOP++] = val;
+    if(B.TOP == maxB-1){
+        std::cout << "kamar penuh";
     }
+    else{
+        B.TOP++;
+        B.member[B.TOP] = val;  
+    }
+    
 }
 
 int noKamarB(){
