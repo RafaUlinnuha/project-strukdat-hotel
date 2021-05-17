@@ -2,6 +2,7 @@
 void batas();
 void menuAwal();
 void pesanKamar();
+void pesanLagi();
 void menuPengunjung();
 void backtoMenuPengunjung();
 void listKamar();
@@ -19,14 +20,17 @@ void batas(){
 void menuAwal(){
     system("cls");
     int homePilih;
-    std::cout << "\tHOTEL DEL LUNA\n";
-    std::cout << "\n";
+    batas();
+    std::cout << "\t\t\tHOTEL DEL LUNA\n";
+    batas();
     std::cout << "Selamat datang di Hotel Del Luna\n";
     std::cout << "\n";
     std::cout << "Masuk Sebagai\n"
                  "1. Pengunjung\n"
-                 "2. Pegawai\n";
-    std::cout << "Masukkan pilihan (1/2)\t: ";
+                 "2. Pegawai\n"
+                 "3. Keluar\n";
+    batas();
+    std::cout << "Masukkan pilihan (1/2/3)\t: ";
     std::cin >> homePilih;
     switch(homePilih){
         case 1:
@@ -35,33 +39,48 @@ void menuAwal(){
         case 2:
             idPegawai();
             break;
+        case 3:
+            std::cout << "\n\t\tGOODBYE :)\n";
+            exit(0);
         default:
-            std::cout << "Masukkan Anda Salah!!\n";
+            std::cout << "Input yang anda masukkan salah!!\n";
+            menuAwal();
     }
 }
 
 void cetakBuktiPesanan(pointer pNew){
+    system("cls");
     batas();
     std::cout << "\t\tSelamat, pesanan berhasil dibuat!\n";
     batas();
     std::cout << "Nama\t\t\t: " << pNew->nama << "\n";
     std::cout << "Kamar\t\t\t: " << pNew->kamar << "\n";
-    std::cout << "Tanggal Check-in\t: " << pNew->tanggalCI <<" - " << pNew->bulanCI <<" - " << pNew->tahunCI << "\n";
-    std::cout << "Tanggal Check-out\t: " << pNew->tanggalCO <<" - " << pNew->bulanCO <<" - " << pNew->tahunCO << "\n";
-    std::cout << "No Kamar\t\t: " << pNew->noKamar;
+    std::cout << "Tanggal Check-in\t: " <<pNew->tanggalCI <<" - 05 - 2021\n";
+    std::cout << "Tanggal Check-out\t: " <<pNew->tanggalCO <<" - 05 - 2021\n"; 
+    std::cout << "No Kamar\t\t: " << pNew->noKamar <<"\n";
 }
 
 void pesanKamar(){
     system("cls");
     pointer pNew;
-    QueuePengunjung Q;
     listKamar();
     batas();
     std::cout << "\t\t\tPESAN KAMAR\n";
     batas();
     createPesanan(pNew);
+    masukkanListPengunjung(pNew);
     cetakBuktiPesanan(pNew);
-    masukkanListPengunjung(pNew, Q);
+    pesanLagi();
+}
+
+void pesanLagi(){
+    char jawab;
+    batas();
+    std::cout << "Pesan lagi?(Y/N)\t: ";
+    std::cin >> jawab;
+    if(jawab == 'Y' || jawab == 'y'){
+        pesanKamar();
+    }
 }
 
 /*-----------------------------------PUNYA PENGUNJUNG---------------------------------------*/
@@ -70,12 +89,13 @@ void menuPengunjung(){
     int tamuPilih;
     char pilih;
     batas();
-    std::cout << "\tPENGUNJUNG\n";
+    std::cout << "\t\t\t\tPENGUNJUNG\n";
     batas();
-    std::cout << "Menu :\n"
+    std::cout << "Menu :\n\n"
                  "1. List Kamar\n"
                  "2. Pesan Kamar\n"
                  "3. Back to Menu\n";
+    batas();
     std::cout << "Masukkan pilihan (1/2/3)\t: ";
     std::cin >> tamuPilih;
     switch(tamuPilih){
@@ -91,21 +111,22 @@ void menuPengunjung(){
             menuAwal();
             break;
         default:
-            std::cout << "Masukkan Anda Salah!!\n";
+            std::cout << "Input yang anda masukkan salah!!\n";
             backtoMenuPengunjung();
     }
 }
 
 void backtoMenuPengunjung(){
     char pilih;
-    std::cout << "\n\nBack to menu (Y/N)? ";
+    batas();
+    std::cout << "Back to menu (Y/N)?\t";
     std::cin >> pilih;
     if (pilih == 'Y' || pilih == 'y'){
         menuPengunjung();
     } else if (pilih == 'N' || pilih == 'n'){
         exit(0);
     } else {
-        std::cout << "Masukkan Anda Salah!!\n";
+        std::cout << "Input yang anda masukkan salah!!\n";
     }
 }
 
@@ -119,49 +140,47 @@ void listKamar(){
     std::cout << "Fasilitas\t\t: Max. 2 orang, Wifi, SPA, Kolam\n";
     std::cout << "\t\t\t  Renang, Sarapan, AC\n";
     std::cout << "Harga/malam\t\t: Rp. 400.000,00\n";
-    std::cout << "Jumlah kamar tersedia\t: "; countKamarA();
-    std::cout << "\n\n2. Kamar B\n";
+    std::cout << "Jumlah kamar tersedia\t: " << countKamarA();
+    std::cout << "\n\n\n2. Kamar B\n";
     std::cout << "Fasilitas\t\t: Max. 4 orang, Wifi, AC\n";
     std::cout << "Harga/malam\t\t: Rp. 400.000,00\n";
-    std::cout << "Jumlah kamar tersedia\t: "; countKamarB();
+    std::cout << "Jumlah kamar tersedia\t: " << countKamarB();
+    std::cout << "\n\n";
 }
 
 /*------------------------------------PUNYA PEGAWAI-----------------------------------------*/
 void menuPegawai(){
     system("cls");
     int pegawaiPilih;
-    std::cout << "\tPEGAWAI\n";
-    std::cout << "\n";
-    std::cout << "Menu :\n"
+    batas();
+    std::cout << "\t\t\t\tPEGAWAI\n";
+    batas();
+    std::cout << "\nMenu :\n\n"
                  "1. List Pengunjung\n"
-                 "2. Update Kamar\n"
-                 "3. Pesan Kamar\n"
-                 "4. Hapus Pengunjung\n"
-                 "5. Back to Menu\n";
+                 "2. Pesan Kamar\n"
+                 "3. Hapus Pengunjung\n"
+                 "4. Back to Menu\n";
+    batas();
     std::cout << "Masukkan pilihan (1/2/3/4/5)\t: ";
     std::cin >> pegawaiPilih;
     switch(pegawaiPilih){
         case 1:
-            cetakListPengunjung(Q);
+            cetakListPengunjung();
             backtoMenuPegawai();
             break;
         case 2:
-            update();
-            backtoMenuPegawai();
-            break;
-        case 3:
             pesanKamar();
             backtoMenuPegawai();
             break;
-        case 4:
-            hapusPengunjung(Q);
+        case 3:
+            hapusPengunjung();
             backtoMenuPegawai();
             break;
-        case 5:
+        case 4:
             menuAwal();
             break;
         default:
-            std::cout << "Masukkan Anda Salah!!\n";
+            std::cout << "Input yang anda masukkan salah!!\n";
             backtoMenuPegawai();
     }
 }
@@ -169,7 +188,9 @@ void menuPegawai(){
 void idPegawai(){
     system("cls");
     int idPeg;
-    std::cout << "\tPEGAWAI\n";
+    batas();
+    std::cout << "\t\t\t\tPEGAWAI\n";
+    batas();
     std::cout << "\n";
     std::cout << "Masukkan ID Pegawai\t: ";
     std::cin >> idPeg;
@@ -177,45 +198,20 @@ void idPegawai(){
         menuPegawai();
     } else {
         std::cout << "ID yang Anda Masukkan Salah!\n";
+        menuAwal();
     }
 }
 
 void backtoMenuPegawai(){
     char pilih;
-    std::cout << "\n\nBack to menu (Y/N)? ";
+    batas();
+    std::cout << "Back to menu (Y/N)?\t";
     std::cin >> pilih;
     if (pilih == 'Y' || pilih == 'y'){
         menuPegawai();
     } else if (pilih == 'N' || pilih == 'n'){
         exit(0);
     } else {
-        std::cout << "Masukkan Anda Salah!!\n";
-    }
-}
-
-void update(){
-    system("cls");
-    int pilih, noKamar;
-    std::cout << "\tUPDATE\n";
-    std::cout << "1. Kamar A\n";
-    std::cout << "2. Kamar B\n";
-    std::cout << "Pilih kamar (1/2)\t\t: ";
-    std::cin >> pilih;
-
-    switch(pilih){
-        case 1:
-            std::cout << "Masukkan no kamar\t: ";
-            std::cin >> noKamar;
-            push(noKamar);
-            backtoMenuPegawai();
-            break;
-        case 2: 
-            std::cout << "Masukkan no kamar\t: ";
-            std::cin >> noKamar;
-            pushB(noKamar);
-            backtoMenuPegawai();
-            break;
-        default:
-            std::cout << "Masukkan Anda Salah!!\n";
+        std::cout << "Input yang anda masukkan salah!!\n";
     }
 }

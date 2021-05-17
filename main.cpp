@@ -7,16 +7,15 @@
 main(){
     KamarA A;
     KamarB B;
-    QueuePengunjung Q;
-    createList(Q);
+    createList();
     createKamarA(A);
-    int noA[5] = {1,2,3,4,5};
+    int noA[5] = {5,4,3,2,1};
     for(int i=0; i<5; i++){
         push(noA[i]);
     }
     
     createKamarB(B);
-    int noB[7] = {6,7,8,9,10,11,12};
+    int noB[7] = {12,11,10,9,8,7,6};
     for(int i=0; i<7; i++){
         pushB(noB[i]);
     }

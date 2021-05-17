@@ -1,23 +1,21 @@
+void menuAwal();
+void batas();
+void pesanKamar();
+
 struct Pengunjung{
     char kamar;
     std::string nama;
-    int noKamar, tanggalCO, bulanCO, tanggalCI, bulanCI, tahunCI, tahunCO;
+    int noKamar, tanggalCO, tanggalCI;
     Pengunjung *next;
     //prioritynya tanggal check-out, tanggal lebih awal maka disimpan didepan 
 };
 
 typedef Pengunjung* pointer;
+typedef pointer list;
+list First;
 
-struct QueuePengunjung{
-    pointer head;
-    pointer tail;
-};
-
-QueuePengunjung Q;
-
-void createList(QueuePengunjung& Q){
-    Q.head = nullptr;
-    Q.tail = nullptr;
+void createList(){
+    First = nullptr;
 }
 
 void createPesanan(pointer &pNew){
@@ -28,100 +26,155 @@ void createPesanan(pointer &pNew){
     std::cout << "Kamar (A/B)\t\t: "; 
     std::cin >> pNew->kamar;
     if(pNew->kamar == 'A' || pNew->kamar == 'a'){
-        pNew->noKamar = noKamarA();
-        popA();
-    } else if (pNew->kamar == 'B' || pNew->kamar == 'b'){
-        pNew->noKamar = noKamarB();
-        popB();
-    } else {
-        std::cout << "Masukkan Anda Salah!!\n";
-        exit(0);
-    }
-    std::cout << "Tanggal Check-in\t: "; 
-    std::cin >> pNew->tanggalCI >> pNew->bulanCI >> pNew->tahunCI; 
-    std::cout << "Tanggal Check-out\t: ";
-    std::cin >> pNew->tanggalCO >> pNew->bulanCO >> pNew->tahunCO; 
-    if(pNew->tanggalCI > 31 || pNew->tanggalCO > 31 || pNew->tanggalCI < 1 || pNew->tanggalCO < 1 || pNew->bulanCI >12 || pNew->bulanCO >12 || pNew->bulanCI < 1 || pNew->bulanCO < 1 || pNew->tahunCI < 2021 || pNew->tahunCO < 2021){
-        std::cout << "Tanggal yang anda masukkan salah!\n";
-        std::cout << "Pesan ulang (Y/N)? ";
-        std::cin >> pilihPesan;
-        if(pilihPesan == 'y' || pilihPesan == 'Y'){
-            createPesanan(pNew);
+        if(countKamarA() == 0){
+            std::cout << "Jenis kamar yang anda pilih tidak ada! pilih kamar lain!\n";
+            std::cout << "kembali ke menu awal(Y/N)?\t";
+            std::cin >> pilihPesan;
+            if(pilihPesan =='y' || pilihPesan=='Y'){
+            menuAwal();
+            }
+            else{
+                exit(0);
+            } 
         }
         else{
-            exit(0);
+            pNew->noKamar = noKamarA();
+            popA(); 
         }
+    }
+
+    else if (pNew->kamar == 'B' || pNew->kamar == 'b'){
+        if(countKamarB() == 0){
+            std::cout << "Jenis kamar yang anda pilih sudah penuh! pilih kamar lain!\n";
+            std::cout << "kembali ke menu awal(Y/N)?\t";
+            std::cin >> pilihPesan;
+            if(pilihPesan =='y' || pilihPesan=='Y'){
+            menuAwal();
+            }
+            else{
+                exit(0);
+            }
+        } 
+        else{
+            pNew->noKamar = noKamarB();
+            popB();
+        }
+        
+    }
+    else{
+        std::cout << "Input yang anda masukkan salah, kembali ke menu awal!";
+        menuAwal();
+    }
+
+    std::cout << "Tanggal Check-in\t: "; 
+    std::cin >> pNew->tanggalCI; 
+    std::cout << "Tanggal Check-out\t: ";
+    std::cin >> pNew->tanggalCO;
+    if(pNew->tanggalCO < pNew->tanggalCI){
+        std::cout << "input tanggal salah, kembali ke menu awal!";
+        menuAwal();
     }
     pNew->next = nullptr;
 }
 
-void masukkanListPengunjung(pointer& pNew,QueuePengunjung Q){ //enqueue
-    pointer pRev = nullptr;
-    pointer pHelp = Q.head;
-    if(Q.head == nullptr && Q.tail == nullptr){
-        Q.head = pNew;
-        Q.tail = pNew; 
+void masukkanListPengunjung(pointer& pNew){ //enqueue
+    pointer pHelp = First;
+    pointer prev = nullptr;
+    
+    if(First == nullptr){
+        First = pNew;
     }
     else{
         while(pNew->tanggalCO >= pHelp->tanggalCO){
-            if(pNew->next == nullptr)
+            if(pHelp->next == nullptr)
                 break;
-            pRev = pHelp;
+            prev = pHelp;
             pHelp = pHelp->next;
         }
-        if(pHelp==Q.head && pNew->tanggalCO < pHelp->tanggalCO){
+        if(pHelp==First && pNew->tanggalCO <= pHelp->tanggalCO){
             pNew->next = pHelp;
-            Q.head = pNew;
+            First = pNew;
         }
-        else if(pHelp==Q.tail && pNew->tanggalCO > pHelp->tanggalCO){
-            pHelp->next = pHelp;
-            Q.tail = pNew;
+        else if(pHelp->next == nullptr && pNew->tanggalCO > pHelp->tanggalCO){
+            pHelp->next = pNew;
         }
         else{
-            pRev->next = pNew;
+            prev->next = pNew;
             pNew->next = pHelp;
         }
         
     }
 }
 
-void cetakListPengunjung(QueuePengunjung Q){
-    pointer pHelp = Q.head;
-    if(Q.head == nullptr && Q.tail == nullptr){
+void cetakListPengunjung(){
+    system("cls");
+    batas();
+    std::cout << "\t\t\tList Pengunjung\n";
+    batas();
+    pointer pHelp = First;
+    if(First == nullptr){
         std::cout<< "Kosong";
     }
     int no = 1;
     while (pHelp != nullptr){
-    std::cout << no << "\tNama\t:" <<pHelp->nama << "\n";
-    std::cout << "Kamar\t\t: " << pHelp->kamar << "\n";
-    std::cout << "No Kamar\t: " << pHelp->noKamar << "\n"; 
-    std::cout << "Tanggal Check-in\t: " <<pHelp->tanggalCI <<" - " << pHelp->bulanCI <<" - " << pHelp->tahunCI << "\n";
-    std::cout << "Tanggal Check-out\t: " <<pHelp->tanggalCO <<" - " << pHelp->bulanCO <<" - " << pHelp->tahunCO << "\n"; 
+    std::cout << no << ".\tNama\t\t\t:" <<pHelp->nama << "\n";
+    std::cout << "\tKamar\t\t\t: " << pHelp->kamar << "\n";
+    std::cout << "\tNo Kamar\t\t: " << pHelp->noKamar << "\n"; 
+    std::cout << "\tTanggal Check-in\t: " <<pHelp->tanggalCI <<" - 05 - 2021\n";
+    std::cout << "\tTanggal Check-out\t: " <<pHelp->tanggalCO <<" - 05 - 2021\n\n"; 
     pHelp = pHelp->next;
     no++;
     }
 }
 
-void hapusPengunjung(QueuePengunjung Q) {
-    pointer delElement;
-    if(Q.head != nullptr){
-        std::cout << "Pengunjung dengan data :\n";
-        std::cout << "Nama\t:" <<Q.head->nama << "\n";
-        std::cout << "Kamar\t\t: " << Q.head->kamar << "\n";
-        std::cout << "No Kamar\t: " << Q.head->noKamar << "\n"; 
-        std::cout << "Tanggal Check-in\t: " <<Q.head->tanggalCI <<" - " << Q.head->bulanCI <<" - " << Q.head->tahunCI << "\n";
-        std::cout << "Tanggal Check-out\t: " <<Q.head->tanggalCO <<" - " << Q.head->bulanCO <<" - " << Q.head->tahunCO << "\n";
+void hapusPengunjung(){
+    batas();
+    std::cout << "\t\t\tHapus Pengunjung\n";
+    batas();
+    pointer delElement, prev = nullptr;
+    pointer pHelp = First;
+    pointer pHelp2 = First;
+    
+    if(First == nullptr){
+        std::cout << "tidak ada pengunjung :(";
     }
-    if(Q.head == nullptr){
-        delElement = nullptr;
-    } else if(Q.head->next == nullptr){
-        delElement = Q.head;
-        Q.head = nullptr;
-        Q.tail = nullptr;
-    } else{
-        delElement = Q.head;
-        Q.head = Q.head->next;
-        delElement->next = nullptr;
+    else{
+        std::string nama;
+        int tglCOAwal = First->tanggalCO;
+        int no = 1;
+        while(pHelp!= nullptr && pHelp->tanggalCO == tglCOAwal){
+            std::cout << no << ".\tNama\t\t\t:" <<pHelp->nama << "\n";
+            std::cout << "\tKamar\t\t\t: " << pHelp->kamar << "\n";
+            std::cout << "\tNo Kamar\t\t: " << pHelp->noKamar << "\n"; 
+            std::cout << "\tTanggal Check-in\t: " <<pHelp->tanggalCI <<" - 05 - 2021\n";
+            std::cout << "\tTanggal Check-out\t: " <<pHelp->tanggalCO <<" - 05 - 2021\n\n";
+            pHelp = pHelp->next;
+            no++;
+        }
+        std::cout << "masukkan nama pelanggan yang ingin dihapus: ";
+        std::cin >> nama;
+        if(pHelp2->nama == nama){
+            First = pHelp2->next;
+            delElement = pHelp2;
+        }
+        else{
+            while(pHelp2 != nullptr && pHelp2->nama != nama){
+                prev = pHelp2;
+                pHelp2 = pHelp2->next;
+            }
+            if(pHelp2 == nullptr){
+                std::cout << "pengunjung dengan nama" << nama << "tidak ada";
+            }
+            prev->next = pHelp2->next;
+            delElement = pHelp2;
+        }
+        int noKamar = delElement->noKamar;
+        if(delElement->kamar == 'A' || delElement->kamar == 'a'){
+            push(noKamar);
+        }
+        else{
+            pushB(noKamar);
+        }
     }
-    std::cout << "Sudah tidak ada / berhasil terhapus!\n";
+    batas();
 }

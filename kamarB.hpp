@@ -10,16 +10,13 @@ void createKamarB(KamarB &B){
     B.TOP = -1;
 }
 
-void countKamarB(){
-    std::cout << B.TOP + 1<< "\n";
+int countKamarB(){
+    return B.TOP + 1;
 }
 
 void pushB(int val){
-    if(B.TOP == maxB-1){
-        std::cout << "Kamar sudah penuh";
-    } else {
-        B.TOP++;
-        B.member[B.TOP] = val;
+    if(B.TOP < max-1){
+        B.member[A.TOP++] = val;
     }
 }
 
