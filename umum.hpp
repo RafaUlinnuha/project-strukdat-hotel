@@ -26,7 +26,7 @@ void menuAwal(){
     std::cout << "Masuk Sebagai\n"
                  "1. Pengunjung\n"
                  "2. Pegawai\n";
-    std::cout << "Masukkan pilihan (1/2) : ";
+    std::cout << "Masukkan pilihan (1/2)\t: ";
     std::cin >> homePilih;
     switch(homePilih){
         case 1:
@@ -76,7 +76,7 @@ void menuPengunjung(){
                  "1. List Kamar\n"
                  "2. Pesan Kamar\n"
                  "3. Back to Menu\n";
-    std::cout << "Masukkan pilihan (1/2/3)\t ";
+    std::cout << "Masukkan pilihan (1/2/3)\t: ";
     std::cin >> tamuPilih;
     switch(tamuPilih){
         case 1:
