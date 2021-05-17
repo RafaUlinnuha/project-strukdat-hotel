@@ -76,7 +76,7 @@ void menuPengunjung(){
                  "1. List Kamar\n"
                  "2. Pesan Kamar\n"
                  "3. Back to Menu\n";
-    std::cout << "Masukkan pilihan : ";
+    std::cout << "Masukkan pilihan (1/2/3)\t ";
     std::cin >> tamuPilih;
     switch(tamuPilih){
         case 1:
@@ -138,7 +138,7 @@ void menuPegawai(){
                  "3. Pesan Kamar\n"
                  "4. Hapus Pengunjung\n"
                  "5. Back to Menu\n";
-    std::cout << "Masukkan pilihan (1/2) : ";
+    std::cout << "Masukkan pilihan (1/2/3/4/5)\t: ";
     std::cin >> pegawaiPilih;
     switch(pegawaiPilih){
         case 1:
@@ -171,7 +171,7 @@ void idPegawai(){
     int idPeg;
     std::cout << "\tPEGAWAI\n";
     std::cout << "\n";
-    std::cout << "Masukkan ID Pegawai : ";
+    std::cout << "Masukkan ID Pegawai\t: ";
     std::cin >> idPeg;
     if(idPeg == 888/*pegawai->id*/){
         menuPegawai();
@@ -199,7 +199,7 @@ void update(){
     std::cout << "\tUPDATE\n";
     std::cout << "1. Kamar A\n";
     std::cout << "2. Kamar B\n";
-    std::cout << "Pilih kamar\t: ";
+    std::cout << "Pilih kamar (1/2)\t\t: ";
     std::cin >> pilih;
 
     switch(pilih){
