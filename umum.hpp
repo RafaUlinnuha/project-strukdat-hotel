@@ -7,7 +7,7 @@ void menuPengunjung();
 void backtoMenuPengunjung();
 void listKamar();
 void menuPegawai();
-void idPegawai();
+void password();
 void backtoMenuPegawai();
 void update();
 void cetakBuktiPesanan(pointer pNew);
@@ -37,10 +37,10 @@ void menuAwal(){
             menuPengunjung();
             break;
         case 2:
-            idPegawai();
+            password();
             break;
         case 3:
-            std::cout << "\n\t\tGOODBYE :)\n";
+            std::cout << "\n\t\t\tGOODBYE :)\n";
             exit(0);
         default:
             std::cout << "Input yang anda masukkan salah!!\n";
@@ -185,20 +185,34 @@ void menuPegawai(){
     }
 }
 
-void idPegawai(){
+void backtoMenuAwal(){
+    char pilih;
+    batas();
+    std::cout << "Back to menu (Y/N)?\t";
+    std::cin >> pilih;
+    if (pilih == 'Y' || pilih == 'y'){
+        menuAwal();
+    } else if (pilih == 'N' || pilih == 'n'){
+        exit(0);
+    } else {
+        std::cout << "Input yang anda masukkan salah!!\n";
+    }
+}
+
+void password(){
     system("cls");
-    int idPeg;
+    std::string pass;
     batas();
     std::cout << "\t\t\t\tPEGAWAI\n";
     batas();
     std::cout << "\n";
-    std::cout << "Masukkan ID Pegawai\t: ";
-    std::cin >> idPeg;
-    if(idPeg == 888/*pegawai->id*/){
+    std::cout << "Masukkan Password\t: ";
+    std::cin >> pass;
+    if(pass == "kelompok11"){
         menuPegawai();
     } else {
-        std::cout << "ID yang Anda Masukkan Salah!\n";
-        menuAwal();
+        std::cout << "Password yang Anda Masukkan Salah!\n";
+        backtoMenuAwal();
     }
 }
 
