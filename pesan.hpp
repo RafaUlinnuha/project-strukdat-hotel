@@ -23,8 +23,9 @@ void createList(){
 void createPesanan(pointer &pNew){
     pNew = new Pengunjung;
     char pilihPesan;
+    std::cin.ignore(1, '\n');
     std::cout << "Nama\t\t\t: ";
-    std::cin >> pNew->nama;
+    std::getline(std::cin, pNew->nama);
     std::cout << "Kamar (A/B)\t\t: "; 
     std::cin >> pNew->kamar;
     if(pNew->kamar == 'A' || pNew->kamar == 'a'){
@@ -158,8 +159,9 @@ void hapusPengunjung(){
             pHelp = pHelp->next;
             no++;
         }
+        std::cin.ignore(1, '\n');
         std::cout << "Masukkan nama pelanggan yang ingin dihapus: ";
-        std::cin >> nama;
+        std::getline(std::cin, nama);
         if(pHelp2->nama == nama){
             First = pHelp2->next;
             delElement = pHelp2;
