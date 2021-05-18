@@ -1,4 +1,5 @@
 //ada apa aja disini:
+void setcolor (unsigned short color);
 void batas();
 void menuAwal();
 void pesanKamar();
@@ -13,6 +14,11 @@ void update();
 void cetakBuktiPesanan(pointer pNew);
 
 /*------------------------------------------UMUM--------------------------------------------*/
+void setcolor (unsigned short color) {
+    HANDLE hCon = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hCon,color);
+}
+
 void batas(){
     std::cout << "---------------------------------------------------------------------\n";
 }
@@ -43,7 +49,9 @@ void menuAwal(){
             std::cout << "\n\t\t\tGOODBYE :)\n";
             exit(0);
         default:
+            setcolor(4);
             std::cout << "Input yang anda masukkan salah!!\n";
+            setcolor(7);
             menuAwal();
     }
 }
@@ -80,6 +88,12 @@ void pesanLagi(){
     std::cin >> jawab;
     if(jawab == 'Y' || jawab == 'y'){
         pesanKamar();
+    } else if (jawab == 'N' || jawab == 'n'){
+        exit(0);
+    } else {
+        setcolor(4);
+        std::cout << "Input yang anda masukkan salah!!\n";
+        setcolor(7);
     }
 }
 
@@ -111,7 +125,9 @@ void menuPengunjung(){
             menuAwal();
             break;
         default:
+            setcolor(4);
             std::cout << "Input yang anda masukkan salah!!\n";
+            setcolor(7);
             backtoMenuPengunjung();
     }
 }
@@ -126,7 +142,9 @@ void backtoMenuPengunjung(){
     } else if (pilih == 'N' || pilih == 'n'){
         exit(0);
     } else {
+        setcolor(4);
         std::cout << "Input yang anda masukkan salah!!\n";
+        setcolor(7);
     }
 }
 
@@ -161,7 +179,7 @@ void menuPegawai(){
                  "3. Hapus Pengunjung\n"
                  "4. Back to Menu\n";
     batas();
-    std::cout << "Masukkan pilihan (1/2/3/4/5)\t: ";
+    std::cout << "Masukkan pilihan (1/2/3/4)\t: ";
     std::cin >> pegawaiPilih;
     switch(pegawaiPilih){
         case 1:
@@ -180,7 +198,9 @@ void menuPegawai(){
             menuAwal();
             break;
         default:
+            setcolor(4);
             std::cout << "Input yang anda masukkan salah!!\n";
+            setcolor(7);
             backtoMenuPegawai();
     }
 }
@@ -195,7 +215,9 @@ void backtoMenuAwal(){
     } else if (pilih == 'N' || pilih == 'n'){
         exit(0);
     } else {
+        setcolor(4);
         std::cout << "Input yang anda masukkan salah!!\n";
+        setcolor(7);
     }
 }
 
@@ -207,11 +229,18 @@ void password(){
     batas();
     std::cout << "\n";
     std::cout << "Masukkan Password\t: ";
-    std::cin >> pass;
+                 char i = _getch();
+                 while(i != 13){
+                     pass.push_back(i);
+                     std::cout << "*";
+                     i = _getch();
+                 }
     if(pass == "kelompok11"){
         menuPegawai();
     } else {
-        std::cout << "Password yang Anda Masukkan Salah!\n";
+        setcolor(4);
+        std::cout << "\nPassword yang Anda Masukkan Salah!\n";
+        setcolor(7);
         backtoMenuAwal();
     }
 }
@@ -226,6 +255,8 @@ void backtoMenuPegawai(){
     } else if (pilih == 'N' || pilih == 'n'){
         exit(0);
     } else {
+        setcolor(4);
         std::cout << "Input yang anda masukkan salah!!\n";
+        setcolor(7);
     }
 }

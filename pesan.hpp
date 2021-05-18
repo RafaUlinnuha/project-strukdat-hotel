@@ -113,7 +113,7 @@ void cetakListPengunjung(){
     batas();
     pointer pHelp = First;
     if(First == nullptr){
-        std::cout<< "Kosong";
+        std::cout<< "Kosong\n";
     }
     int no = 1;
     while (pHelp != nullptr){
@@ -136,7 +136,7 @@ void hapusPengunjung(){
     pointer pHelp2 = First;
     
     if(First == nullptr){
-        std::cout << "tidak ada pengunjung :(";
+        std::cout << "tidak ada pengunjung :(\n";
     }
     else{
         std::string nama;
@@ -176,5 +176,4 @@ void hapusPengunjung(){
             pushB(noKamar);
         }
     }
-    batas();
 }

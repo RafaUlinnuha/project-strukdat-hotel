@@ -1,4 +1,6 @@
 #include <iostream>
+#include <conio.h>
+#include <windows.h>
 #include "kamarA.hpp"
 #include "kamarB.hpp"
 #include "pesan.hpp"
