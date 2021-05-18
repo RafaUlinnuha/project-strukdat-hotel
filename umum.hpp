@@ -14,14 +14,6 @@ void update();
 void cetakBuktiPesanan(pointer pNew);
 
 /*------------------------------------------UMUM--------------------------------------------*/
-void setcolor (unsigned short color) {
-    HANDLE hCon = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hCon,color);
-}
-
-void batas(){
-    std::cout << "---------------------------------------------------------------------\n";
-}
 
 void menuAwal(){
     system("cls");
@@ -89,7 +81,7 @@ void pesanLagi(){
     if(jawab == 'Y' || jawab == 'y'){
         pesanKamar();
     } else if (jawab == 'N' || jawab == 'n'){
-        exit(0);
+        menuAwal();
     } else {
         setcolor(4);
         std::cout << "Input yang anda masukkan salah!!\n";

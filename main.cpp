@@ -6,6 +6,15 @@
 #include "pesan.hpp"
 #include "umum.hpp"
 
+void setcolor (unsigned short color) {
+    HANDLE hCon = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hCon,color);
+}
+
+void batas(){
+    std::cout << "---------------------------------------------------------------------\n";
+}
+
 main(){
     KamarA A;
     KamarB B;

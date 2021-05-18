@@ -1,3 +1,5 @@
+void setcolor (unsigned short color);
+void backtoMenuAwal();
 void menuAwal();
 void batas();
 void pesanKamar();
@@ -21,14 +23,14 @@ void createList(){
 void createPesanan(pointer &pNew){
     pNew = new Pengunjung;
     char pilihPesan;
-    std::cout << "Nama\t\t\t: "; 
+    std::cout << "Nama\t\t\t: ";
     std::cin >> pNew->nama;
     std::cout << "Kamar (A/B)\t\t: "; 
     std::cin >> pNew->kamar;
     if(pNew->kamar == 'A' || pNew->kamar == 'a'){
         if(countKamarA() == 0){
             std::cout << "Jenis kamar yang anda pilih tidak ada! pilih kamar lain!\n";
-            std::cout << "kembali ke menu awal(Y/N)?\t";
+            std::cout << "Kembali ke menu awal(Y/N)?\t";
             std::cin >> pilihPesan;
             if(pilihPesan =='y' || pilihPesan=='Y'){
             menuAwal();
@@ -62,8 +64,10 @@ void createPesanan(pointer &pNew){
         
     }
     else{
-        std::cout << "Input yang anda masukkan salah, kembali ke menu awal!";
-        menuAwal();
+        setcolor(4);
+        std::cout << "Input yang anda masukkan salah, kembali ke menu awal!\n";
+        setcolor(7);
+        backtoMenuAwal();
     }
 
     std::cout << "Tanggal Check-in\t: "; 
@@ -71,8 +75,10 @@ void createPesanan(pointer &pNew){
     std::cout << "Tanggal Check-out\t: ";
     std::cin >> pNew->tanggalCO;
     if(pNew->tanggalCO < pNew->tanggalCI){
-        std::cout << "input tanggal salah, kembali ke menu awal!";
-        menuAwal();
+        setcolor(4);
+        std::cout << "input tanggal salah, kembali ke menu awal!\n";
+        setcolor(7);
+        backtoMenuAwal();
     }
     pNew->next = nullptr;
 }
@@ -117,7 +123,7 @@ void cetakListPengunjung(){
     }
     int no = 1;
     while (pHelp != nullptr){
-    std::cout << no << ".\tNama\t\t\t:" <<pHelp->nama << "\n";
+    std::cout << no << ".\tNama\t\t\t: " <<pHelp->nama << "\n";
     std::cout << "\tKamar\t\t\t: " << pHelp->kamar << "\n";
     std::cout << "\tNo Kamar\t\t: " << pHelp->noKamar << "\n"; 
     std::cout << "\tTanggal Check-in\t: " <<pHelp->tanggalCI <<" - 05 - 2021\n";
@@ -128,6 +134,7 @@ void cetakListPengunjung(){
 }
 
 void hapusPengunjung(){
+    system("cls");
     batas();
     std::cout << "\t\t\tHapus Pengunjung\n";
     batas();
@@ -143,7 +150,7 @@ void hapusPengunjung(){
         int tglCOAwal = First->tanggalCO;
         int no = 1;
         while(pHelp!= nullptr && pHelp->tanggalCO == tglCOAwal){
-            std::cout << no << ".\tNama\t\t\t:" <<pHelp->nama << "\n";
+            std::cout << no << ".\tNama\t\t\t: " <<pHelp->nama << "\n";
             std::cout << "\tKamar\t\t\t: " << pHelp->kamar << "\n";
             std::cout << "\tNo Kamar\t\t: " << pHelp->noKamar << "\n"; 
             std::cout << "\tTanggal Check-in\t: " <<pHelp->tanggalCI <<" - 05 - 2021\n";
@@ -151,11 +158,14 @@ void hapusPengunjung(){
             pHelp = pHelp->next;
             no++;
         }
-        std::cout << "masukkan nama pelanggan yang ingin dihapus: ";
+        std::cout << "Masukkan nama pelanggan yang ingin dihapus: ";
         std::cin >> nama;
         if(pHelp2->nama == nama){
             First = pHelp2->next;
             delElement = pHelp2;
+            setcolor(2);
+            std::cout << "Data pelanggan berhasil terhapus!\n";
+            setcolor(7);
         }
         else{
             while(pHelp2 != nullptr && pHelp2->nama != nama){
@@ -163,10 +173,15 @@ void hapusPengunjung(){
                 pHelp2 = pHelp2->next;
             }
             if(pHelp2 == nullptr){
-                std::cout << "pengunjung dengan nama" << nama << "tidak ada";
+                setcolor(4);
+                std::cout << "Pengunjung dengan nama" << nama << "tidak ada";
+                setcolor(7);
             }
             prev->next = pHelp2->next;
             delElement = pHelp2;
+            setcolor(2);
+            std::cout << "Data pelanggan berhasil terhapus!\n";
+            setcolor(7);
         }
         int noKamar = delElement->noKamar;
         if(delElement->kamar == 'A' || delElement->kamar == 'a'){
