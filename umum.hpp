@@ -38,7 +38,10 @@ void menuAwal(){
             password();
             break;
         case 3:
-            std::cout << "\n\t\t\tGOODBYE :)\n";
+            system("cls");
+            batas();
+            std::cout << "\n\t\t\tGOODBYE :)\n\n";
+            batas();
             exit(0);
         default:
             setcolor(4);
@@ -76,7 +79,7 @@ void pesanKamar(){
 void pesanLagi(){
     char jawab;
     batas();
-    std::cout << "Pesan lagi?(Y/N)\t: ";
+    std::cout << "Pesan lagi?(Y/N)\t";
     std::cin >> jawab;
     if(jawab == 'Y' || jawab == 'y'){
         pesanKamar();
@@ -165,7 +168,7 @@ void menuPegawai(){
     batas();
     std::cout << "\t\t\t\tPEGAWAI\n";
     batas();
-    std::cout << "\nMenu :\n\n"
+    std::cout << "Menu :\n\n"
                  "1. List Pengunjung\n"
                  "2. Pesan Kamar\n"
                  "3. Hapus Pengunjung\n"

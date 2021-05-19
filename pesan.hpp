@@ -78,9 +78,16 @@ void createPesanan(pointer &pNew){
     std::cout << "Tanggal Check-out\t: ";
     std::cin >> pNew->tanggalCO;
     if(pNew->tanggalCO < pNew->tanggalCI){
+        batas();
         setcolor(4);
         std::cout << "input tanggal salah, kembali ke menu awal!\n";
         setcolor(7);
+        if(pNew->kamar == 'A' || pNew->kamar == 'a'){
+            push(pNew->noKamar);
+        }
+        else{
+            pushB(pNew->noKamar);
+        }
         backtoMenuAwal();
     }
     pNew->next = nullptr;
@@ -122,7 +129,7 @@ void cetakListPengunjung(){
     batas();
     pointer pHelp = First;
     if(First == nullptr){
-        std::cout<< "Kosong\n";
+        std::cout << "tidak ada pengunjung :(\n";
     }
     int no = 1;
     while (pHelp != nullptr){
@@ -151,9 +158,8 @@ void hapusPengunjung(){
     }
     else{
         std::string nama;
-        int tglCOAwal = First->tanggalCO;
         int no = 1;
-        while(pHelp!= nullptr && pHelp->tanggalCO == tglCOAwal){
+        while(pHelp!= nullptr && pHelp->tanggalCO == First->tanggalCO){
             std::cout << no << ".\tNama\t\t\t: " <<pHelp->nama << "\n";
             std::cout << "\tNo. HP\t\t\t: " << pHelp->noHp << "\n";
             std::cout << "\tKamar\t\t\t: " << pHelp->kamar << "\n";
@@ -163,12 +169,13 @@ void hapusPengunjung(){
             pHelp = pHelp->next;
             no++;
         }
-        std::cin.ignore(1, '\n');
+
         std::cout << "Masukkan nama pelanggan yang ingin dihapus: ";
-        std::getline(std::cin, nama);
+        std::getline(std::cin >> std::ws, nama);
         if(pHelp2->nama == nama){
             First = pHelp2->next;
             delElement = pHelp2;
+            batas();
             setcolor(2);
             std::cout << "Data pelanggan berhasil terhapus!\n";
             setcolor(7);
@@ -180,21 +187,22 @@ void hapusPengunjung(){
             }
             if(pHelp2 == nullptr){
                 setcolor(4);
-                std::cout << "Pengunjung dengan nama" << nama << "tidak ada";
+                std::cout << "Pengunjung dengan nama " << nama << " tidak ada";
+                hapusPengunjung();
                 setcolor(7);
             }
             prev->next = pHelp2->next;
             delElement = pHelp2;
+            batas();
             setcolor(2);
             std::cout << "Data pelanggan berhasil terhapus!\n";
             setcolor(7);
         }
-        int noKamar = delElement->noKamar;
         if(delElement->kamar == 'A' || delElement->kamar == 'a'){
-            push(noKamar);
+            push(delElement->noKamar);
         }
         else{
-            pushB(noKamar);
+            pushB(delElement->noKamar);
         }
     }
 }
