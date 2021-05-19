@@ -6,7 +6,7 @@ void pesanKamar();
 
 struct Pengunjung{
     char kamar;
-    std::string nama;
+    std::string nama, noHp;
     int noKamar, tanggalCO, tanggalCI;
     Pengunjung *next;
     //prioritynya tanggal check-out, tanggal lebih awal maka disimpan didepan 
@@ -26,6 +26,8 @@ void createPesanan(pointer &pNew){
     std::cin.ignore(1, '\n');
     std::cout << "Nama\t\t\t: ";
     std::getline(std::cin, pNew->nama);
+    std::cout << "No. HP\t\t\t: ";
+    std::cin >> pNew->noHp;
     std::cout << "Kamar (A/B)\t\t: "; 
     std::cin >> pNew->kamar;
     if(pNew->kamar == 'A' || pNew->kamar == 'a'){
@@ -125,6 +127,7 @@ void cetakListPengunjung(){
     int no = 1;
     while (pHelp != nullptr){
     std::cout << no << ".\tNama\t\t\t: " <<pHelp->nama << "\n";
+    std::cout << "\tNo. HP\t\t\t: " << pHelp->noHp << "\n";
     std::cout << "\tKamar\t\t\t: " << pHelp->kamar << "\n";
     std::cout << "\tNo Kamar\t\t: " << pHelp->noKamar << "\n"; 
     std::cout << "\tTanggal Check-in\t: " <<pHelp->tanggalCI <<" - 05 - 2021\n";
@@ -152,6 +155,7 @@ void hapusPengunjung(){
         int no = 1;
         while(pHelp!= nullptr && pHelp->tanggalCO == tglCOAwal){
             std::cout << no << ".\tNama\t\t\t: " <<pHelp->nama << "\n";
+            std::cout << "\tNo. HP\t\t\t: " << pHelp->noHp << "\n";
             std::cout << "\tKamar\t\t\t: " << pHelp->kamar << "\n";
             std::cout << "\tNo Kamar\t\t: " << pHelp->noKamar << "\n"; 
             std::cout << "\tTanggal Check-in\t: " <<pHelp->tanggalCI <<" - 05 - 2021\n";
